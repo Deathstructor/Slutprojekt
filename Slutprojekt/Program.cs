@@ -1,5 +1,4 @@
-﻿using System.Security.AccessControl;
-using Raylib_cs;
+﻿using Raylib_cs;
 using System.Numerics;
 
 Raylib.SetTargetFPS(60);
@@ -23,16 +22,16 @@ void game()
 
 
     while (!Raylib.WindowShouldClose()) {
-        for (int i = 0; i < Raylib.GetScreenWidth(); i += 50)
-        {
-            for (int j = 0; j < Raylib.GetScreenHeight(); j += 50 )
-            {
-                if (mousePos.X < i + 50 && mousePos.X > i && mousePos.Y + 50 < j && mousePos.Y > j && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
-                {
-                    System.Console.WriteLine(mousePos);
-                }
-            }
-        }
+        // for (int i = 0; i < Raylib.GetScreenWidth(); i += 50)
+        // {
+        //     for (int j = 0; j < Raylib.GetScreenHeight(); j += 50 )
+        //     {
+        //         if (mousePos.X < i + 50 && mousePos.X > i && mousePos.Y + 50 < j && mousePos.Y > j && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
+        //         {
+        //             System.Console.WriteLine(mousePos);
+        //         }
+        //     }
+        // }
     
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.GRAY);
