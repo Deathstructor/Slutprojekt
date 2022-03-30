@@ -44,8 +44,6 @@ void game()
             squares[pos.x, pos.y].square.Click();
         }
 
-        mines.ShowMines();
-
         Raylib.EndDrawing();
     }
 }

@@ -28,6 +28,6 @@ public class Square
 
     public void Click()
     {
-
+        
     }
 }
