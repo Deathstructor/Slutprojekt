@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using Raylib_cs;
-using System.Numerics;
+﻿using Raylib_cs;
 
 Raylib.SetTargetFPS(60);
 Raylib.InitWindow(1000, 1000, "Minesweeper");
@@ -26,6 +24,56 @@ void game()
     foreach (var item in mines.positions)
     {
         squares[item.x, item.y].isMine = true;
+    }
+
+    for (int sx = 0; sx < squares.GetLength(0); sx++)
+    {
+        for (int sy = 0; sy < squares.GetLength(1); sy++)
+        {
+            int total = 0;
+
+            if (sx != 0)
+            {
+                if (sy != 0)
+                {
+                    total = squares[sx - 1, sy - 1].isMine ? total += 1: total; // 1
+                }
+
+                total = squares[sx - 1, sy - 0].isMine ? total += 1: total; // 4
+                
+                if (sy != 19)
+                {
+                    total = squares[sx - 1, sy + 1].isMine ? total += 1: total; // 7
+                }
+            }
+
+            if (sx != 19)
+            {
+                if (sy != 0)
+                {
+                    total = squares[sx + 1, sy - 1].isMine ? total += 1: total; // 3
+                }
+                
+                total = squares[sx + 1, sy - 0].isMine ? total += 1: total; // 6
+                
+                if (sy != 19)
+                {
+                    total = squares[sx + 1, sy + 1].isMine ? total += 1: total; // 9
+                }
+            }
+
+            if (sy != 0)
+            {
+                total = squares[sx - 0, sy - 1].isMine ? total += 1: total; // 2
+            }
+
+            if (sy != 19)
+            {
+                total = squares[sx - 0, sy + 1].isMine ? total += 1: total; // 8
+            }
+            
+            squares[sx, sy].square.nc = total;
+        }
     }
 
     while (!Raylib.WindowShouldClose())
@@ -62,7 +110,7 @@ void game()
             {
                 if (mouseCords.Y < j)
                 {
-                    pos = (i / boxSize, j / boxSize);
+                    pos = ((i / boxSize) - 1, (j / boxSize) - 1);
                     System.Console.WriteLine(pos.x + "      " + pos.y);
                     return pos;
                 }

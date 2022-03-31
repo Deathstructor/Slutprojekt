@@ -7,7 +7,8 @@ enum boxProperties
 
 public class Square
 {
-    public bool mineExist = false;
+    public int nc = 0;
+
     Rectangle rec;
 
     public Square(int x, int y)
@@ -21,7 +22,18 @@ public class Square
 
         if (isMine)
         {
-            Raylib.DrawCircle((int)(rec.x + (int)boxProperties.size / 2), (int)(rec.y + (int)boxProperties.size / 2), 10, Color.ORANGE);
+            Raylib.DrawCircle((int)(rec.x + (int)boxProperties.size / 2), (int)(rec.y + (int)boxProperties.size / 2), 10, Color.RED);
+        }
+        else if(nc > 0)
+        {
+            if (nc == 1) {Raylib.DrawText(nc.ToString(), (int) rec.x + 23, (int) rec.y + 15, 28, Color.DARKBLUE);}
+            if (nc == 2) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.GREEN);}
+            if (nc == 3) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.RED);}
+            if (nc == 4) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.DARKPURPLE);}
+            if (nc == 5) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.RED);}
+            if (nc == 6) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.SKYBLUE);}
+            if (nc == 7) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.BLACK);}
+            if (nc == 8) {Raylib.DrawText(nc.ToString(), (int) rec.x + 18, (int) rec.y + 15, 28, Color.GRAY);}
         }
 
     }
@@ -29,34 +41,5 @@ public class Square
     public void Click()
     {
 
-    }
-
-    public void CountNeighbours()
-    {
-        if (isMine)
-        {
-            nc = -1;
-            return;
-        }
-
-        var total = 0;
-
-        for (var xo = -1; xo <= 1; xo++)
-            {
-                for (var yo = -1; yo <= 1; yo++)
-                {
-                    var i = this.i + xo;
-                    var j = this.j + yo;
-                    if (i > -1 && i < cols && j > -1 && j < rows)
-                    {
-                        var neighbor = grid[i][j];
-                        if (neighbor.mine)
-                        {
-                            total++;
-                        }
-                    }
-                }
-            }
-        this.nc = total;
     }
 }
