@@ -1,5 +1,6 @@
 using System;
 
+// Randomizar positionen för alla minor och sparar positionen i en tuple.
 public class Mines
 {
     int mineAmount = 75;
