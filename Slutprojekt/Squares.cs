@@ -19,15 +19,18 @@ public class Square
         rec = new Rectangle(x, y, (float)boxProperties.size, (float)boxProperties.size);
     }
 
-    public void Draw(bool isMine)
+    public void DrawGrid()
     {
         Raylib.DrawRectangleLinesEx(rec, 1, Color.BLACK); // Ritar ut outlines på rektanglar istället för hela rektanglar för att lätt skapa rutnätet
+    }
 
-        if (isMine)
+    public void Draw(bool isMine)
+    {
+        if (isMine && clicked)
         {
             Raylib.DrawCircle((int)(rec.x + (int)boxProperties.size / 2), (int)(rec.y + (int)boxProperties.size / 2), 10, Color.RED); // Ritar ut minorna
         }
-        else if (nc > 0) // Ritar ut siffran som anger hur många minor som finns runt den rutan
+        else if (nc > 0 && clicked) // Ritar ut siffran som anger hur många minor som finns runt den rutan
         {
             if (nc == 1) { Raylib.DrawText(nc.ToString(), (int)rec.x + 23, (int)rec.y + 15, 28, Color.DARKBLUE); }
             if (nc == 2) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.GREEN); }
@@ -36,7 +39,7 @@ public class Square
             if (nc == 5) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.ORANGE); }
             if (nc == 6) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.SKYBLUE); }
             if (nc == 7) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.BLACK); }
-            if (nc == 8) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.GRAY); }
+            if (nc == 8) { Raylib.DrawText(nc.ToString(), (int)rec.x + 18, (int)rec.y + 15, 28, Color.LIGHTGRAY); }
         }
     }
 }

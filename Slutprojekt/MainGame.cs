@@ -1,4 +1,3 @@
-using System;
 using Raylib_cs;
 
 public class MainGame
@@ -24,21 +23,23 @@ public class MainGame
         {
             squares[item.x, item.y].isMine = true;
         }
+            
 
         while (!Raylib.WindowShouldClose())
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.GRAY);
 
-            // foreach ((Square square, bool isMine) s in squares)
-            // {
-            //     s.square.Draw(s.isMine);
-            // }
+            foreach ((Square square, bool isMine) s in squares)
+            {
+                s.square.DrawGrid();
+            }
 
             if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
             {
                 Click();
             }
+
             Raylib.EndDrawing();
         }
     }
@@ -88,7 +89,7 @@ public class MainGame
                 {
                     if (sy != 0)
                     {
-                        total = (!squares[sx - 1, sy - 1].isMine && !squares[sx - 1, sy - 1].square.clicked) ? total += 1 : total; // 1
+                        total = (!squares[sx - 1, sy - 1].isMine && !squares[sx - 1, sy - 1].square.clicked) ? squares[pos.x, pos.y].square.clicked == true : null; // 1
                     }
 
                     total = (!squares[sx - 1, sy - 0].isMine && !squares[sx - 1, sy - 0].square.clicked) ? total += 1 : total; // 4
@@ -131,7 +132,7 @@ public class MainGame
 
     void CountNeighbours()
     {
-        // Allt från rad 34 till 82 är till för att kolla rutans "grannar" och se
+        // Allt från rad X till X är till för att kolla rutans "grannar" och se
         // om det finns och var det finns minor och sedan lägga in värdet på antalet
         // minor i variabeln 'nc' (förkortning för "neighbour count"). 'Total' variabeln
         // behövs tekniskt sätt inte, men det blir lättare att läsa och förstå med den.
