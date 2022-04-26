@@ -4,7 +4,7 @@ public class MainGame
 {
     (Square square, bool isMine)[,] squares = new (Square, bool isMine)[20, 20];    // Själva arrayen för rutorna som har dimensionerna 20x20. Säger även om det finns en mina.
     Mines mines = new Mines();
-    Logic logic = new Logic();
+    Logic logic;
 
     public void Game()
     {
@@ -25,6 +25,8 @@ public class MainGame
             squares[item.x, item.y].isMine = true;
         }
 
+        // Kallar på Logic klassen
+        logic = new Logic(squares);
         logic.CountNeighbours();
 
 

@@ -4,6 +4,11 @@ public class Logic
 {
     (Square square, bool isMine)[,] squares = new (Square, bool isMine)[20, 20];    // Själva arrayen för rutorna som har dimensionerna 20x20. Säger även om det finns en mina.
 
+    public Logic((Square square, bool isMine)[,] squares_)
+    {
+        squares = squares_;
+    }
+
     // En tuple som kollar var man klickar och sparar x och y koordinaterna
     public (int x, int y) ClickCords()
     {
