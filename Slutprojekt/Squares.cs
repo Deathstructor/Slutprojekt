@@ -21,11 +21,13 @@ public class Square
         rec = new Rectangle(x, y, (float)boxProperties.size, (float)boxProperties.size);
     }
 
+    // Ritar ut rutnätet
     private void DrawGrid()
     {
         Raylib.DrawRectangleLinesEx(rec, 1, Color.BLACK); // Ritar ut outlines på rektanglar istället för hela rektanglar för att lätt skapa rutnätet
     }
 
+    // Allt som ska ritas ut (lite mer organiserat)
     public void Update(bool isMine)
     {
         Draw(isMine);
@@ -37,7 +39,7 @@ public class Square
     {
         if (clicked)
         {
-            Raylib.DrawRectangleRec(rec, Raylib.ColorFromHSV(0, 0, 0.50f));
+            Raylib.DrawRectangleRec(rec, Raylib.ColorFromHSV(0, 0, 0.50f)); // Ritar ut en ruta som är mörkare än bakgrunden där man klickar
 
             if (isMine)
             {
@@ -57,12 +59,12 @@ public class Square
         }
     }
 
+    // Ritar ut en flagga om det ska finnas en flagga
     private void Flag()
     {
         if (flagged)
         {
             Raylib.DrawTexture(LoadImage.flagImg, (int)rec.x, (int)rec.y, Color.WHITE);
-            // Raylib.DrawRectangleRec(rec, Raylib.ColorFromHSV(100f, 1f, 0.5f));
         }
     }
 }
